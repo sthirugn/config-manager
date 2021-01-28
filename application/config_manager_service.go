@@ -24,7 +24,7 @@ func (s *ConfigManagerService) GetAccountState(id string) (*domain.AccountState,
 	if err != nil {
 		switch err {
 		case sql.ErrNoRows:
-			fmt.Println("Creating new account entry")
+			fmt.Println("Creating new account entry for ", id)
 			acc, err = s.createAccountState(id)
 		default:
 			return nil, err
@@ -123,11 +123,10 @@ func (s *ConfigManagerService) ApplyState(id, user string, clients []domain.Clie
 	// includes url to retrieve the playbook, url to upload results, and which client to send work to
 	var err error
 	for _, client := range clients {
-		res, err := s.DispatcherRepo.Dispatch(client.ClientID)
+		_, err := s.DispatcherRepo.Dispatch(client.ClientID)
 		if err != nil {
 			fmt.Println(err) // TODO what happens if a message can't be dispatched? Retry?
 		}
-		fmt.Println(res.Code)
 
 		runID := uuid.New()
 		initialTime := time.Now()
@@ -142,6 +141,8 @@ func (s *ConfigManagerService) ApplyState(id, user string, clients []domain.Clie
 			CreatedAt: initialTime,
 			UpdatedAt: initialTime,
 		}
+
+		fmt.Println("Creating new run entry")
 
 		err = s.RunRepo.CreateRun(newRun)
 		if err != nil {

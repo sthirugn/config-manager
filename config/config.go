@@ -14,7 +14,7 @@ func Get() *viper.Viper {
 	options.SetDefault("DBName", "postgres")
 
 	options.SetDefault("KafkaGroupID", "config-manager")
-	options.SetDefault("KafkaBrokers", []string{"localhost:9092"})
+	options.SetDefault("KafkaBrokers", []string{"localhost:29092"})
 	options.SetDefault("KafkaConsumerOffset", -1)
 	options.SetDefault("KafkaResultsTopic", "platform.playbook-dispatcher.results")
 	options.SetDefault("KafkaConnectionsTopic", "platform.inventory.connections")

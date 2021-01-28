@@ -51,21 +51,7 @@ func main() {
 		}
 	}()
 
-	go func() {
-		for {
-			fmt.Println("Results consumer running")
-			m, _ := resultsConsumer.ReadMessage(ctx)
-			fmt.Println(m)
-		}
-	}()
-
-	go func() {
-		for {
-			fmt.Println("Connections consumer running")
-			m, _ := connectionConsumer.ReadMessage(ctx)
-			fmt.Println(m)
-		}
-	}()
+	go kafka.StartReading(ctx, connectionConsumer, container.CMService())
 
 	<-sigChan
 }
