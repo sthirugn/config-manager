@@ -6,8 +6,32 @@
 # 3. Run `insights-client --compliance` on your system to report Compliance to cloud.redhat.com
 #    Note: Steps 2 & 3 above will be taken care of by this playbook.
 
-- hosts: localhost
+- name: Compliance OpenSCAP Setup
+  hosts: localhost
   become: yes
+  vars:
+    insights_signature_exclude: /hosts,/vars/insights_signature
+    insights_signature: !!binary |
+      TFMwdExTMUNSVWRKVGlCUVIxQWdVMGxIVGtGVVZWSkZMUzB0TFMwS1ZtVnljMmx2YmpvZ1IyNTFV
+      RWNnZGpFS0NtbFJTVlpCZDFWQldVbENSbkZ6ZG5jMU9FUXJhalZ3VGtGUmFXdENkeTh2V2xsallW
+      RnVibEZMTmtZMlZIbDFlWFYyVlRaRVNXVnhWWGxNTUc5WVZYQUtlaTl1V1U5WFNHaHBiMDh5TkZw
+      cmJsRlZaVVpuTkZCWlZYUTNRMWg1YWk5MWVETlpVM1pYUzAxMFozZG9Tek5LVG1Nd2NsWkhOWEV6
+      Tmxkd09YTTJSd28zUzNFNWN6ZGtia1I2VVcxUFFYRjBZa2RZUTJ0MFFYUnRSRlpRTUNzNVIwZDFj
+      VFZDZERremJtUkNVRVZIU1VseVJWcFFjVUZDTVVwTlNFMU5iVkpVQ2xGd1ptbDJNVTlVU0VOeU5t
+      WkNja2RtUzNKQk9GZHNabWM1UjJkSWIweFFNMXBRT1ZWS1dUWnlOVTFDZEcxSmFFSnlPRWhzVFZv
+      d00yTnNUbTFOVm04S01FeEZjVzkzVWk4ck1qUXJSbTVpY1dJNWNtWlNLMm8yWkRGRE5XNDBZbEpW
+      VW1WdFVUbE5WblEzUlVsUGNreERVa3AxSzFoUllrVjNkbkZxVTNsTGR3cFVZVGxtWlZVclVrWXJO
+      bTVtYW1Sbk9EQnFaVlpoTWxCU1pFNU9lVzQ1ZWt0c01YSkllRkZwWTFGT2VHMDRjR0pKVmtOR00y
+      WmtRa0ZvZDFNeksxSk9DakpoY21aWGRuQmpOM1EwVDBzeFUwOUJRbFk1WVhaT1VXcE1SazF5UTNk
+      dmRtOHZUVXBhZVRNM2VtbFJOMWxQVlUxalltaElWMnRGT0RKQmNVNHJSVW9LUldaSmF6bHRSSGRt
+      UTFwYVZsQlNUVTlETkdjM2FYVTBhV1ZSU0ZwWmNWcDFObmg2Ym5GSmFscDNXWEZLVEhGTmRUWTVX
+      VmR4VVhob1luUjZhMmt2VWdwRlYxcDZWU3RKYmtWalNIZ3hjV0p3WlZWT1N6WlNiRVZLWTJOT0sy
+      YzFUV0UxVDNGamFXOXBiMmRhY2pST2VrUlZha2xoV0hselFscElWVmhoWkVOckNrbFFhMlZVVjFS
+      d1N6ZEtORFpyVkZwT01FWnNNbU5XZVVoclJEQXhWbW8yVnpkbE1ESmhjVEpRVjFWNWRUUkdlRGR3
+      V1dWaVlVRlNUMmR0Ym0xalVFTUtSR1p4TUdGU1ZuWkpTM2w1YURacGVtUm1UMGxXV1hONlZ5dG5W
+      WGhEWkdodlVWaFNlV1JFWWpKaUwzRlhXVlUwTWxsaWExSm9ha1EzZVZCaVpEZHpXQXBvUzJwVFZD
+      OXhWWEZ6U1QwS1BUVlRaQzhLTFMwdExTMUZUa1FnVUVkUUlGTkpSMDVCVkZWU1JTMHRMUzB0Q2c9
+      PQ==
   tasks:
     - name: Install OpenSCAP packages for Compliance service
       yum:
